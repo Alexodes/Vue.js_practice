@@ -7,23 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="app">
-    {{ sayHello() }}
+    <div class="demo" :style="{backgroundColor: color}"></div>
+    <div class="demo" :style="myStyle"></div>
+    <div class="demo"></div>
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
 </div>
 <script>
     new Vue({
         el: '#app',
         data: {
-            title: 'Hello World!'
+            color: 'gray',
+            width: 100
         },
-        methods: {
-            sayHello() {
-                return this.title;
+        computed: {
+            myStyle () {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width + 'px'
+                };
             }
-        }
-    })
+        },
+    });
 </script>
 </body>
 </html>
